@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/15915940450/aneme/issues"
   },
-  "homepage": "https://github.com/15915940450/aneme#readme"
+  "homepage": "https://github.com/15915940450/aneme#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
