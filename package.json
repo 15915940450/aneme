@@ -1,0 +1,22 @@
+{
+  "name": "aneme",
+  "version": "1.5.9",
+  "description": "analyze mark six",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/15915940450/aneme.git"
+  },
+  "keywords": [
+    "analyze"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/15915940450/aneme/issues"
+  },
+  "homepage": "https://github.com/15915940450/aneme#readme"
+}
