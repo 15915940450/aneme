@@ -12,10 +12,20 @@ router.get('/',function(req,res){
     }
     //數據庫db
     var db=client.db('ehd');
-    db.collection('testCollection').find().toArray(function(err,result){
+    db.collection('testCollection').aggregate([
+      {
+        $group:{
+          '_id':"$num", //必須為'_id'
+          total:{
+            $sum:1
+          }
+        }
+      }
+    ]).toArray(function(err,result){
+      if(err){throw err}
       res.send(result);
     });
-  })
-})
+  });
+});
 
 module.exports=router;
