@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 
 app.use(express.static('./public'));
-app.get('/',(req,res)=>res.send('Hello World!'));
+app.get('/marksix',(req,res)=>res.send('Hello World!'));
 
 app.use(function (req,res) {
   res.status(404).send('Sorry can\'t find that!');

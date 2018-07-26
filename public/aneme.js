@@ -1,1 +1,12 @@
-console.log('public');
+$(function(){
+  $.ajax({
+    url:'/marksix',
+    method:'GET',
+    success:function(data){
+      console.log('success',data);
+    },
+    error:function(err){
+      console.log(err);
+    }
+  });
+});
