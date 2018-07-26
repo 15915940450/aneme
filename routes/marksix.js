@@ -20,6 +20,11 @@ router.get('/',function(req,res){
             $sum:1
           }
         }
+      },
+      {
+        $sort:{
+          total:1
+        }
       }
     ]).toArray(function(err,result){
       if(err){throw err}
