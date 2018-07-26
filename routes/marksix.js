@@ -12,6 +12,8 @@ router.get('/',function(req,res){
     }
     //數據庫db
     var db=client.db('ehd');
+    //aggregate
+    /*
     db.collection('testCollection').aggregate([
       {
         $group:{
@@ -27,6 +29,12 @@ router.get('/',function(req,res){
         }
       }
     ]).toArray(function(err,result){
+      if(err){throw err}
+      res.send(result);
+    });
+    */
+
+    db.collection('marksix').find({}).toArray(function(err,result){
       if(err){throw err}
       res.send(result);
     });

@@ -1,6 +1,7 @@
 $(function(){
   $.getJSON('/marksix',function(data){
-    _.logErr(data);
+    console.log(data.length);
+    //_.logErr(data);
     //drawChart('chart',data);
   });
 });
