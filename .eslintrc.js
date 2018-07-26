@@ -18,6 +18,7 @@ module.exports = {
     "semi": ["error", "always"],
     "comma-dangle": ["error", "never"],
     "eqeqeq": ["error", "always"],
+    "no-console": ["allow"],
     "quotes": ["error", "single"]
   }
 };
