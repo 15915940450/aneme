@@ -1,12 +1,5 @@
 $(function(){
-  $.ajax({
-    url:'/marksix',
-    method:'GET',
-    success:function(data){
-      console.log('success',data);
-    },
-    error:function(err){
-      console.log(err);
-    }
+  $.getJSON('/marksix',function(data){
+    console.log('success',data);
   });
 });
