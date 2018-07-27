@@ -33,9 +33,15 @@ router.get('/',function(req,res){
       res.send(result);
     });
     */
-
+    //find marksix
+    /*
     db.collection('marksix').find({}).sort({period:1}).toArray(function(err,result){
       if(err){throw err}
+      res.send(result);
+    });
+    */
+    db.collection('te').find({}).sort({date:1}).toArray(function(err,result){
+      if(err){throw err;}
       res.send(result);
     });
   });
