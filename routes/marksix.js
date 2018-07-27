@@ -34,7 +34,7 @@ router.get('/',function(req,res){
     });
     */
 
-    db.collection('marksix').find({}).toArray(function(err,result){
+    db.collection('marksix').find({}).sort({period:1}).toArray(function(err,result){
       if(err){throw err}
       res.send(result);
     });
