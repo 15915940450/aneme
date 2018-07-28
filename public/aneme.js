@@ -1,15 +1,19 @@
 $(function(){
-  $.getJSON('/marksix',function(data){
-    _.logErr(data);
-    initEcharts();
+  var objEcharts=echarts.init(document.getElementById('echarts_wrap'));
+  var yMax=200;
+
+  $.getJSON('/marksix',function(arrData){
+    initEcharts(objEcharts,arrData,yMax);
   });
 });
 
 
-var initEcharts=function(){
-  var dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
-  var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
-  var yMax = 600;
+var initEcharts=function(objEcharts,arrData,yMax){
+  var dataAxis=[],data=[];
+  arrData.forEach(function(v,i){
+    dataAxis[i]=v['_id'];
+    data[i]=v.total;
+  });
   var dataShadow = [];
 
   for (var i = 0; i < data.length; i++) {
@@ -18,8 +22,14 @@ var initEcharts=function(){
 
   option = {
     title: {
-      text: '特性示例：渐变色 阴影 点击缩放',
-      subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
+      text: 'mark six',
+      subtext: 'luck?'
+    },
+    tooltip : {
+      trigger: 'axis',
+      axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      }
     },
     xAxis: {
       data: dataAxis,
@@ -95,6 +105,5 @@ var initEcharts=function(){
     ]
   };
 
-  var objEcharts=echarts.init(document.getElementById('echarts_wrap'));
   objEcharts.setOption(option);
 }
