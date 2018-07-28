@@ -12,6 +12,11 @@ router.get('/',function(req,res){
     }
     //數據庫db
     var db=client.db('ehd');
+    var arrAggr=[{$group:{'_id':"$num",total:{$sum:1}}},{$sort:{num:1}}];
+    db.collection('te').aggregate(arrAggr).toArray(function(err,result){
+      if(err){throw err}
+      res.send(result);
+    });
     //aggregate
     /*
     db.collection('testCollection').aggregate([
@@ -40,10 +45,12 @@ router.get('/',function(req,res){
       res.send(result);
     });
     */
+    /*
     db.collection('te').find({}).sort({date:1}).toArray(function(err,result){
       if(err){throw err;}
       res.send(result);
     });
+    */
   });
 });
 
