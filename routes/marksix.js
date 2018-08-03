@@ -44,4 +44,19 @@ routerGet('/all',{
   sort:{date:-1}
 });
 
+router.post('/inventory',function(req,res){
+  console.log(req.body);
+  MongoClient.connect(urlMongoDB,{ useNewUrlParser: true },function(err,client){
+    var db=client.db('ehd');
+    db.collection('inventory').insertOne({
+      item:'phone',
+      qty:Math.random(),
+      status:'A'
+    }).then(function(result){
+
+      res.send(result);
+    });
+  });
+});
+
 module.exports=router;

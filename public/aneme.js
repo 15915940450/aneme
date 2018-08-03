@@ -6,7 +6,7 @@ $(function(){
     initEcharts(objEcharts,arrData,yMax);
   });
   $.getJSON('/marksix/all',function(arrData){
-    console.log(arrData);
+    //console.log(arrData);
     var arrTrs=arrData.map(function(v){
       return `<tr>
           <td>${v.date}</td>
@@ -16,6 +16,22 @@ $(function(){
     var strTrs=arrTrs.join('');
     $('.tbl tbody').html(strTrs);
   });
+
+  //插入記錄
+  $('.insert').on('submit',function(ev){
+    ev.preventDefault();
+    $.ajax({
+      url:'/marksix/inventory',
+      contentType:'application/json;charset=utf-8',
+      data:JSON.stringify({test:'kkkoo'}),
+      dataType:'json',
+      method:'POST',
+      success:function(data){
+        console.log(data);
+      }
+    });
+  });
+
 });
 
 
