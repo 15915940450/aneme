@@ -5,6 +5,17 @@ $(function(){
   $.getJSON('/marksix',function(arrData){
     initEcharts(objEcharts,arrData,yMax);
   });
+  $.getJSON('/marksix/all',function(arrData){
+    console.log(arrData);
+    var arrTrs=arrData.map(function(v){
+      return `<tr>
+          <td>${v.date}</td>
+          <td>${v.num}</td>
+        </tr>`;
+    });
+    var strTrs=arrTrs.join('');
+    $('.tbl tbody').html(strTrs);
+  });
 });
 
 

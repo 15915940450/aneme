@@ -3,55 +3,45 @@ const router=express.Router();
 const MongoClient=require('mongodb').MongoClient;
 const urlMongoDB='mongodb://localhost:27017/ehd';
 
-//http://localhost:1594/marksix/
-router.get('/',function(req,res){
-  //mongodb driver and return data
-  MongoClient.connect(urlMongoDB,function(err,client){
+function routerGet(url,paramSettings){
+  var objSettings=Object.assign({
+    collection:'te',
+    aggregate:false,
+    sort:false
+  },paramSettings);
+  function callbackResult(err,result,res){
     if(err){
       throw err;
     }
-    //數據庫db
-    var db=client.db('ehd');
-    var arrAggr=[{$group:{'_id':"$num",total:{$sum:1}}},{$sort:{total:1}}];
-    db.collection('te').aggregate(arrAggr).toArray(function(err,result){
-      if(err){throw err}
-      res.send(result);
-    });
-    //aggregate
-    /*
-    db.collection('testCollection').aggregate([
-      {
-        $group:{
-          '_id':"$num", //必須為'_id'
-          total:{
-            $sum:1
-          }
-        }
-      },
-      {
-        $sort:{
-          total:1
-        }
+    res.send(result);
+  }
+  router.get(url,function(req,res){
+    MongoClient.connect(urlMongoDB,function(err,client){
+      if(err){
+        throw err;
       }
-    ]).toArray(function(err,result){
-      if(err){throw err}
-      res.send(result);
+      var db=client.db('ehd');
+      if(objSettings.aggregate){
+        db.collection(objSettings.collection).aggregate(objSettings.aggregate).toArray(function(err,result){
+        callbackResult(err,result,res);
+        });
+      }else{
+        db.collection(objSettings.collection).find({}).sort(objSettings.sort).toArray(function(err,result){
+          callbackResult(err,result,res);
+        });
+      }
     });
-    */
-    //find marksix
-    /*
-    db.collection('marksix').find({}).sort({period:1}).toArray(function(err,result){
-      if(err){throw err}
-      res.send(result);
-    });
-    */
-    /*
-    db.collection('te').find({}).sort({date:1}).toArray(function(err,result){
-      if(err){throw err;}
-      res.send(result);
-    });
-    */
   });
+
+}
+
+//http://localhost:1594/marksix/
+routerGet('/',{
+  aggregate:[{$group:{'_id':"$num",total:{$sum:1}}},{$sort:{total:1}}]
+});
+
+routerGet('/all',{
+  sort:{date:-1}
 });
 
 module.exports=router;
