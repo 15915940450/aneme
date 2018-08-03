@@ -22,10 +22,12 @@ $(function(){
     ev.preventDefault();
     $.ajax({
       url:'/marksix/inventory',
-      contentType:'application/json;charset=utf-8',
-      data:JSON.stringify({test:'kkkoo'}),
-      dataType:'json',
+      data:JSON.stringify({
+        test:'ili'
+      }),
       method:'POST',
+      contentType:'application/json;charset=utf-8',
+      dataType:'json',
       success:function(data){
         console.log(data);
       }

@@ -16,7 +16,7 @@ function routerGet(url,paramSettings){
     res.send(result);
   }
   router.get(url,function(req,res){
-    MongoClient.connect(urlMongoDB,function(err,client){
+    MongoClient.connect(urlMongoDB,{useNewUrlParser:true},function(err,client){
       if(err){
         throw err;
       }
@@ -46,7 +46,7 @@ routerGet('/all',{
 
 router.post('/inventory',function(req,res){
   console.log(req.body);
-  MongoClient.connect(urlMongoDB,{ useNewUrlParser: true },function(err,client){
+  MongoClient.connect(urlMongoDB,{useNewUrlParser:true},function(err,client){
     var db=client.db('ehd');
     db.collection('inventory').insertOne({
       item:'phone',
