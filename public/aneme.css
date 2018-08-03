@@ -1,0 +1,25 @@
+#echarts_wrap{
+  width:auto;
+  height:440px;
+}
+.tbl{
+  margin:10px auto;
+  text-align:center;
+  width:250px;
+}
+.tbl_wrap{
+  height:200px;
+  overflow:auto;
+  border:1px solid black;
+}
+
+form.insert{
+  width:250px;
+  margin:10px auto;
+  text-align:right;
+}
+form.insert input{
+  border:none;
+  width:150px;
+  margin-right:20px;
+}
