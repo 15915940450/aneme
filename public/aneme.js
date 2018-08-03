@@ -20,10 +20,15 @@ $(function(){
   //插入記錄
   $('.insert').on('submit',function(ev){
     ev.preventDefault();
+    var date_te=$('#date_te').val();
+    //2018年07月24日082期-12
+    var date=date_te.split('-')[0];
+    var te=date_te.split('-')[1];
     $.ajax({
       url:'/marksix/inventory',
       data:JSON.stringify({
-        test:'ili'
+        date:date,
+        te:+te
       }),
       method:'POST',
       contentType:'application/json;charset=utf-8',

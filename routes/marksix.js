@@ -45,15 +45,11 @@ routerGet('/all',{
 });
 
 router.post('/inventory',function(req,res){
-  console.log(req.body);
+  //console.log(typeof req.body);  //object
+  objInsert=req.body;
   MongoClient.connect(urlMongoDB,{useNewUrlParser:true},function(err,client){
     var db=client.db('ehd');
-    db.collection('inventory').insertOne({
-      item:'phone',
-      qty:Math.random(),
-      status:'A'
-    }).then(function(result){
-
+    db.collection('inventory').insertOne(objInsert).then(function(result){
       res.send(result);
     });
   });
