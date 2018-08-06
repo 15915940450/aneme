@@ -44,13 +44,13 @@ routerGet('/all',{
   sort:{date:-1}
 });
 
-router.post('/inventory',function(req,res){
+router.post('/insert',function(req,res){
   //console.log(typeof req.body);  //object
   objInsert=req.body;
   MongoClient.connect(urlMongoDB,{useNewUrlParser:true},function(err,client){
     var db=client.db('ehd');
-    db.collection('inventory').insertOne(objInsert).then(function(result){
-      res.send(result);
+    db.collection('te').insertOne(objInsert).then(function(result){
+      res.send(result.result);
     });
   });
 });

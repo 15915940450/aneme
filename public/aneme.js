@@ -20,21 +20,23 @@ $(function(){
   //插入記錄
   $('.insert').on('submit',function(ev){
     ev.preventDefault();
-    var date_te=$('#date_te').val();
+    var date_te=$('#date_te').val().trim();
     //2018年07月24日082期-12
     var date=date_te.split('-')[0];
     var te=date_te.split('-')[1];
     $.ajax({
-      url:'/marksix/inventory',
+      url:'/marksix/insert',
       data:JSON.stringify({
         date:date,
-        te:+te
+        num:+te
       }),
       method:'POST',
       contentType:'application/json;charset=utf-8',
       dataType:'json',
       success:function(data){
-        console.log(data);
+        if(data.ok){
+          window.location.reload();
+        }
       }
     });
   });
